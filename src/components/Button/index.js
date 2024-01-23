@@ -1,5 +1,8 @@
-const Button = () => {
-    return <button>
+import './style.css'
+const ButtonComponent = () => (
+    <h2 className='teste'>
         Botão 
-    </button>
-}
+    </h2>
+)
+
+export default ButtonComponent
