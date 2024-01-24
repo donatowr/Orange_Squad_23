@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import './style.css';
-import localImage from "../image/img_login.png";
+import localImage from "../images/img_login.png";
 import Image from 'next/image';
+
+
 
 const Login = () => (
   <>  
@@ -14,11 +16,12 @@ const Login = () => (
 <Image className='image' src={localImage}
 />
 
-
-
-
 <section className='content'>
-  <h1 className='titulo'>Entre no Orange Portfólio</h1>
+
+<div className='titulo'>
+      <h1 className='titulo'>Entre no Orange Portfólio</h1>
+</div>
+
   <h2 className='subtitulo'>Faça login com email</h2>  
 
   <input className='botoeslogin'  type='email' placeholder=' Camila.ux@gmail.com'></input>

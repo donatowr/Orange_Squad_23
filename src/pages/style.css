@@ -13,25 +13,21 @@
         flex-direction: row;
         font-family: 'Roboto', sans-serif;
         gap: 10px;
-        padding-right: 15%;
+        padding-right: 15%;       
 }
 
 .content{
-    width: 540px;
-    height: 271;
-    left: 628px;    
+    width: 540px; 
     flex-direction: column;
     display: flex;
-    gap: 10px;
-    
-           
+    gap: 10px;               
 }
 
-.titulo {
-    
+.titulo {    
     font-size: 44px;
     width: 540px;
-    
+    position:relative;
+    margin-bottom: 100px;    
 }
 
 .subtitulo {
@@ -44,6 +40,8 @@
 .image {
     width: 525px;
     height: 832px;
+    flex-shrink: 0;
+    height: 100vh;
 }
 
 .entrar {
