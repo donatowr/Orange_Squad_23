@@ -1,3 +1,67 @@
-.teste {
-    background-color: red;
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.container {    
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        font-family: 'Roboto', sans-serif;
+        gap: 10px;
+}
+
+.content{
+    width: 540px;
+    height: 271;
+    left: 628px;    
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+    padding: 0;
+       
+}
+
+.titulo {
+    
+    font-size: 44px;
+    width: 540px;
+    
+}
+
+.subtitulo {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #515255;
+}
+
+.image {
+    width: 525px;
+    height: 832px;
+}
+
+.entrar {
+    width: 517px;
+    height: 56px;
+    background-color: #FF5522;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #FCFDFF;
+}
+
+.botoeslogin {
+    width: 517px;
+    height: 56px;
+    border-radius: 5px;    
+}
+
+.link_cadastro {
+    text-decoration: none;
+    color: #818388;
 }
