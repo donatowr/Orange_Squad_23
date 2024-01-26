@@ -1,7 +1,10 @@
+import { formulario } from '../../formulario'
 import './style.css'
-const Register = () => (
-    <h2 className='teste'>
-        Register
-    </h2>
-)
+
+const Register = () => {
+    return(
+        <formulario />
+    )
+}
+
 export default Register
