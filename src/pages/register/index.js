@@ -1,10 +1,15 @@
-import { formulario } from '../../formulario'
+
+import Formulario from '../formulario'
 import './style.css'
 
-const Register = () => {
-    return(
-        <formulario />
-    )
-}
+const Register = () => (
+
+<main>
+  <Formulario />
+</main>
+
+)
+  
+
 
 export default Register

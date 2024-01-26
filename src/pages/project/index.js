@@ -8,19 +8,19 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import localImagePhoto from "../images/Image.png";
 
 const Project = () => (
-  <>
+    <>
     <header>
       <nav>
-        <Image className="logo" src={localImage} />
+    <Image className="logo" src={localImage} />            
         <div className="links">
           <a href="http://localhost:3000/">Meus projetos</a>
           <a href="">Descobrir</a>
         </div>
       </nav>
 
-      <Stack direction="row" spacing={0}>
-        <div>
-           
+      <Stack direction="row" spacing={2}>
+        <div className="photo">            
+            <Image  className="photo" src={localImagePhoto} />                    
         </div>
 
         <div>

@@ -2,10 +2,7 @@ import Head from "next/head";
 import "./style.css";
 import imagemHome from "./images/img_login.png";
 import Image from "next/image";
-import Formulario from "../formulario";
-
-
-
+import Formulario from "./formulario";
 
 const Login = () => (
   <>

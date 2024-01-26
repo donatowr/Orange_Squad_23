@@ -55,7 +55,8 @@ a {
 }
 
 .photo {
-  width: 122px;
-  height: 122px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
+  border-radius: 50%;
 }
