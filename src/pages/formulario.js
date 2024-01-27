@@ -1,8 +1,8 @@
+import React, { useState } from "react";
 import { TextField, createTheme, ThemeProvider, Icon } from "@mui/material";
 import localImage from "./images/logo_google.svg";
 import Image from "next/image";
 import GoogleIcon from "@mui/icons-material/Google";
-import React, { useState } from "react";
 import "./style.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -10,9 +10,8 @@ import IconButton from "@mui/material/IconButton";
 import {useSession, signIn, signOut} from 'next-auth/react'
 
 const logar = () => {
-  const { data: session } = useSession;
 
-  if (session) {
+ if (session) {
     return (      
         <p>Bem Vindo, {session.user.email}</p>
     );
@@ -60,7 +59,35 @@ const Theme = createTheme({
 });
 
 const Formulario = () => {
+
+  const [content, setContent] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onChangeInput = e => setContent({...content, [e.target.name]: e.target.value})
+
+  const sendUser = async e => {
+    e.preventDefault();
+    try {
+      await fetch ('http://localhost:8080/login', {
+        method: 'POST',
+        body: JSON.stringify(content),
+        headers: {'Content-Type': 'application/json'}
+      });
+    } catch (error) {
+   
+    }
+   
+
+  }
+
+  const { data: session } = useSession;
+
+
+
   return (
+
     <ThemeProvider theme={Theme}>
       <div className="container_titulo">
         <h1 className="titulo">Entre no Orange Portfólio</h1>
@@ -72,28 +99,36 @@ const Formulario = () => {
         </Stack>
       </div>
 
-      <form className="formulario">
+      <form className="formulario" onSubmit={sendUser}>
         <h2 className="subtitulo">Faça login com email</h2>
         <TextField
           fullWidth
           margin="normal"
+          name="email"
           label="Email address"
           placeholder="Camila.ux@gmail.com"
           type="email"
           className="inputs"
+          onChange={onChangeInput}
+          value={content.email}
         />
         <TextField
           fullWidth
           margin="normal"
+          type="password"
+          name="password"
           label="Password"
           placeholder="********"
           className="inputs"
+          onChange={onChangeInput}
+          value={content.password}
         />
         <Button
           className="enviar"
           variant="contained"
           color="secundary"
           type="submit"
+          
         >
           Enviar
         </Button>

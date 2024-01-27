@@ -1,11 +1,11 @@
+import React, { useState } from "react";
 import { TextField, createTheme, ThemeProvider, Icon } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import React, { useState } from "react";
 import "./style.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import {useSession, signIn, signOut} from 'next-auth/react'
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const logar = () => {
   const { data: session } = useSession;
@@ -42,43 +42,82 @@ const Theme = createTheme({
 });
 
 const Formulario = () => {
+
+  const [content, setContent] = useState({
+    name: "",
+    secondName: "",
+    email: "",
+    password: "",
+  });
+
+  const onChangeInput = e => setContent({ ...content, [e.target.name]: e.target.value });
+
+  const newUser = async e => {
+    
+    try {
+      await fetch('http://localhost:8080/register', {
+        method: "POST",
+        body: JSON.stringify(content),
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (error) {
+
+    }
+  };
+
   return (
     <ThemeProvider theme={Theme}>
       <div className="container_titulo">
         <h1 className="titulo">Cadastre-se</h1>
       </div>
+      <form className="formulario" onSubmit={newUser}>
+        <TextField
+          style={{ width: "250.5px", marginRight: "12px" }}
+          margin="normal"
+          name="name"
+          label="Nome"
+          required="required"
+          placeholder="Nome"
+          className="inputs"
+          onChange={onChangeInput}
+          value={content.name}
+        />
 
-      <form className="formulario">
-          <TextField
-            style={{width:'250.5px', marginRight:'12px'}}
-            margin="normal"
-            label="Nome"
-            placeholder="Nome"
-            className="inputs"
-            
-          />
+        <TextField
+          style={{ width: "250.5px" }}
+          margin="normal"
+          label="Sobrenome"
+          required="required"
+          name="secondName"
+          placeholder="Sobrenome"
+          className="inputs"
+          onChange={onChangeInput}
+          value={content.secondName}
+        />
 
-          <TextField
-            style={{width:'250.5px',}}
-            margin="normal"
-            placeholder="Sobrenome"
-            className="inputs"
-          />
-          
         <TextField
           fullWidth
           margin="normal"
-         TextField
+          name="email"
+          required="required"
           placeholder="Camila.ux@gmail.com"
+          label="Email Address"
           type="email"
           className="inputs"
+          onChange={onChangeInput}
+          value={content.email}
         />
         <TextField
           fullWidth
           margin="normal"
+          required="required"
+          name="password"
+          type="password"
           label="Password"
           placeholder="********"
           className="inputs"
+          onChange={onChangeInput}
+          value={content.password}
         />
         <Button
           className="enviar"
