@@ -51,12 +51,9 @@ const Formulario = () => {
 
   const newUser = async e => {
     try {
-      await fetch("http://localhost:8080/register", {
+      await fetch("http://localhost:3001/register", {
         method: "POST",
-        body: JSON.stringify({
-          email,
-          password
-        }),
+        body: JSON.stringify(content),
         headers: { "Content-Type": "application/json" },
         mode: "cors",
         credentials: "omit",

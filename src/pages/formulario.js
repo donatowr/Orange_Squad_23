@@ -52,23 +52,31 @@ const Formulario = () => {
 
   const sendUser = async e => {
     
+    console.log('cheguei')
     try {
-      await fetch ('http://localhost:8080/login', {
+      const response = await fetch ('http://localhost:3001/login', {
         method: "POST",
-        body: JSON.stringify({
-          email,
-          password 
-        }),
+        body: JSON.stringify(content),
         headers: {'Content-Type': 'application/json'}
       });
+      console.log(content);
+
+if(response.ok){
+  const responseData = await response.json();
+  localStorage.setItem("token", JSON.stringify(responseData.token));
+  console.log(responseData.token);
+} else {
+  
+  console.error(`Erro na requisição: ${response.status} - ${response.statusText}`);
+}
+
+
+
     } catch (error) {
    
     }   
 
   }
-
-
-
 
   return (
 
@@ -77,9 +85,9 @@ const Formulario = () => {
         <h1 className="titulo">Entre no Orange Portfólio</h1>
 
         <Stack className="posicao_botao" spacing={2} direction="colunm">
-        <a href="localhost:3000/project"><Button onClick={() => signIn('google') } className="botao_google" variant="outlined">
+       <Button onClick={() => signIn('google') } className="botao_google" variant="outlined">
         Entrar com Google
-      </Button></a>
+      </Button>
         </Stack>
       </div>
 
@@ -115,7 +123,7 @@ const Formulario = () => {
         >
           Enviar
         </Button>        
-          Cadastre-se        
+          <a href="http://localhost:3000/register" className="link_cadastro">Cadastre-se</a>        
       </form>
     </ThemeProvider>
   );
