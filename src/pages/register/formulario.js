@@ -51,14 +51,21 @@ const Formulario = () => {
 
   const newUser = async e => {
     try {
-      await fetch("http://localhost:3001/register", {
+     const response = await fetch("http://localhost:3001/register", {
         method: "POST",
         body: JSON.stringify(content),
         headers: { "Content-Type": "application/json" },
         mode: "cors",
         credentials: "omit",
       });
-    } catch (error) {}
+
+      if(response.ok){
+        window.location.href='http://localhost:3000/'
+      }
+      
+      }catch (error) {
+
+    }
   };
 
   return (

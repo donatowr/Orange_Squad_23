@@ -7,9 +7,8 @@ import "./style.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import {useSession, signIn, signOut} from 'next-auth/react'
-
-
+import { useSession, signIn, signOut } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 const Theme = createTheme({
   palette: {
@@ -42,52 +41,45 @@ const Theme = createTheme({
 });
 
 const Formulario = () => {
-
   const [content, setContent] = useState({
     email: "",
     password: "",
   });
 
-  const onChangeInput = e => setContent({...content, [e.target.name]: e.target.value})
+  const onChangeInput = (e) =>
+    setContent({ ...content, [e.target.name]: e.target.value });
 
-  const sendUser = async e => {
-    
-    console.log('cheguei')
+  const sendUser = async (e) => {
+    e.preventDefault();
     try {
-      const response = await fetch ('http://localhost:3001/login', {
+      const response = await fetch("http://localhost:3001/login", {
         method: "POST",
         body: JSON.stringify(content),
-        headers: {'Content-Type': 'application/json'}
+        headers: { "Content-Type": "application/json" },
       });
-      console.log(content);
 
-if(response.ok){
-  const responseData = await response.json();
-  localStorage.setItem("token", JSON.stringify(responseData.token));
-  console.log(responseData.token);
-} else {
-  
-  console.error(`Erro na requisição: ${response.status} - ${response.statusText}`);
-}
+      if (response.ok) {
+        const responseData = await response.json();
+        localStorage.setItem("token", JSON.stringify(responseData.token));
 
-
-
-    } catch (error) {
-   
-    }   
-
-  }
+        window.location.href = "http://localhost:3000/project";
+      }
+    } catch (error) {}
+  };
 
   return (
-
     <ThemeProvider theme={Theme}>
       <div className="container_titulo">
         <h1 className="titulo">Entre no Orange Portfólio</h1>
 
         <Stack className="posicao_botao" spacing={2} direction="colunm">
-       <Button onClick={() => signIn('google') } className="botao_google" variant="outlined">
-        Entrar com Google
-      </Button>
+          <Button
+            onClick={() => signIn("google")}
+            className="botao_google"
+            variant="outlined"
+          >
+            Entrar com Google
+          </Button>
         </Stack>
       </div>
 
@@ -119,11 +111,13 @@ if(response.ok){
           className="enviar"
           variant="contained"
           color="secundary"
-          type="submit"          
+          type="submit"
         >
           Enviar
-        </Button>        
-          <a href="http://localhost:3000/register" className="link_cadastro">Cadastre-se</a>        
+        </Button>
+        <a href="http://localhost:3000/register" className="link_cadastro">
+          Cadastre-se
+        </a>
       </form>
     </ThemeProvider>
   );
