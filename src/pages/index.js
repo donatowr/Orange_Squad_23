@@ -1,29 +1,42 @@
-import  { useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import "./style.css";
 import imagemHome from "./images/img_login.png";
 import Image from "next/image";
 import Formulario from "./formulario";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { Button, Stack } from "@mui/material";
+import { redirect } from "next/navigation";
 
-function Login() {
+const Login = () => {
+  const { data: session } = useSession("requerid: true");
 
-  return (
-    <div>
+  if (!session) {
+    return (
+      <div>
+        <Head>
+          <title>Login</title>
+        </Head>
 
-      <Head>
-        <title>Login</title>
-      </Head>
+        <main className="container">
+          <Image className="image" src={imagemHome} />
 
-      <main className="container">
-        <Image className="image" src={imagemHome} />
+          <section className="inputs">
+            <Formulario />
+          </section>
+        </main>
+      </div>
+    );
+  } else {
+    return (
 
-        <section className="inputs">
-          <Formulario />
-        </section>
-      </main>
+      <div>
+      <p>Welcome, {session.user.email}</p>
+      <button onClick={() => signOut()}>Sign Out</button> 
     </div>
-    
-  );
-}
+      )
+  }
+};
 
 export default Login;
+

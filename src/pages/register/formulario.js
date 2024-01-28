@@ -7,10 +7,6 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { useSession, signIn, signOut } from "next-auth/react";
 
-const logar = () => {
-  const { data: session } = useSession;
-};
-
 const Theme = createTheme({
   palette: {
     primary: {
@@ -50,19 +46,22 @@ const Formulario = () => {
     password: "",
   });
 
-  const onChangeInput = e => setContent({ ...content, [e.target.name]: e.target.value });
+  const onChangeInput = e =>
+    setContent({ ...content, [e.target.name]: e.target.value });
 
   const newUser = async e => {
-    
     try {
-      await fetch('http://localhost:8080/register', {
+      await fetch("http://localhost:8080/register", {
         method: "POST",
-        body: JSON.stringify(content),
+        body: JSON.stringify({
+          email,
+          password
+        }),
         headers: { "Content-Type": "application/json" },
+        mode: "cors",
+        credentials: "omit",
       });
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
 
   return (

@@ -6,6 +6,8 @@ import StarOutline from "@mui/icons-material/StarSharp";
 import Stack from "@mui/material/Stack";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import localImagePhoto from "../images/Image.png";
+import React from "react";
+import { UseSession, signIn, signOut } from "next-auth/react";
 
 const Project = () => (
     <>

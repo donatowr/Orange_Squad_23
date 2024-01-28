@@ -9,24 +9,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import {useSession, signIn, signOut} from 'next-auth/react'
 
-const logar = () => {
 
- if (session) {
-    return (      
-        <p>Bem Vindo, {session.user.email}</p>
-    );
-  } else {
-    
-    return (      
-      <Stack className="posicao_botao" spacing={2} direction="colunm">
-      <button onClick={() => signIn() }  className="botao_google" variant="outlined">
-        Entrar com Google
-      </button>
-        </Stack>
-
-    );
-  }
-};
 
 const Theme = createTheme({
   palette: {
@@ -68,21 +51,22 @@ const Formulario = () => {
   const onChangeInput = e => setContent({...content, [e.target.name]: e.target.value})
 
   const sendUser = async e => {
-    e.preventDefault();
+    
     try {
       await fetch ('http://localhost:8080/login', {
-        method: 'POST',
-        body: JSON.stringify(content),
+        method: "POST",
+        body: JSON.stringify({
+          email,
+          password 
+        }),
         headers: {'Content-Type': 'application/json'}
       });
     } catch (error) {
    
-    }
-   
+    }   
 
   }
 
-  const { data: session } = useSession;
 
 
 
@@ -93,9 +77,9 @@ const Formulario = () => {
         <h1 className="titulo">Entre no Orange Portfólio</h1>
 
         <Stack className="posicao_botao" spacing={2} direction="colunm">
-        <Button onClick={() => signIn('google') } className="botao_google" variant="outlined">
+        <a href="localhost:3000/project"><Button onClick={() => signIn('google') } className="botao_google" variant="outlined">
         Entrar com Google
-      </Button>
+      </Button></a>
         </Stack>
       </div>
 
@@ -127,14 +111,11 @@ const Formulario = () => {
           className="enviar"
           variant="contained"
           color="secundary"
-          type="submit"
-          
+          type="submit"          
         >
           Enviar
-        </Button>
-        <a className="link_cadastro" href="">
-          Cadastre-se
-        </a>
+        </Button>        
+          Cadastre-se        
       </form>
     </ThemeProvider>
   );
