@@ -8,7 +8,6 @@ const ContentModal = () =>{
  
 }
 
-
 function Modal() {
   const [ismodalVisible, setIsModalVisible] = useState(false);
 
