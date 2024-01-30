@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import { TextField, createTheme, ThemeProvider, Icon, FormControl } from "@mui/material";
-import localImage from "./images/logo_google.svg";
-import Image from "next/image";
-import GoogleIcon from "@mui/icons-material/Google";
+import { TextField, createTheme, ThemeProvider } from "@mui/material";
 import "./style.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { redirect } from "next/navigation";
-import clsx from 'clsx';
+
 
 const Theme = createTheme({
   palette: {

@@ -3,20 +3,6 @@ import { TextField, createTheme, ThemeProvider } from "@mui/material";
 import "./style.css";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@mui/material';
-import VisibilityOff from '@mui/material';
-import BotaoSenha from "../../components/Button/botaoPassword";
-import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
-
-
-
-
 
 
 const Theme = createTheme({
