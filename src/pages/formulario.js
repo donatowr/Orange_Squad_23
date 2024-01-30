@@ -58,7 +58,7 @@ const Formulario = () => {
         const responseData = await response.json();
         localStorage.setItem("token", JSON.stringify(responseData.token));
 
-        window.location.href = "http://localhost:3000/project";
+        window.location.href = "https://orange-squad-23.vercel.app/";
       }
     } catch (error) {}
   };
@@ -102,10 +102,8 @@ const Formulario = () => {
           className="inputs"
           onChange={onChangeInput}
           value={content.password}
+          margin-button={8}
         />
-
-   
-
         <Button
           className="enviar"
           variant="contained"
@@ -114,7 +112,7 @@ const Formulario = () => {
         >
           Enviar
         </Button>
-        <a href="http://localhost:3000/register" className="link_cadastro">
+        <a href="https://orange-squad-23.vercel.app/register" color="#fff" className="link_cadastro">
           Cadastre-se
         </a>
       </form>

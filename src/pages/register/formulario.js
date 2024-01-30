@@ -62,7 +62,7 @@ const Formulario = () => {
       if (response.ok) {
         
         toast.success('Cadastro feito com Sucesso');
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "https://orange-squad-23.vercel.app/";
 
       }else {        
         toast.error('Tente Novamente!');
