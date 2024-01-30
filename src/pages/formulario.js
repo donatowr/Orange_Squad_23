@@ -112,7 +112,7 @@ const Formulario = () => {
         >
           Enviar
         </Button>
-        <a href="https://orange-squad-23.vercel.app/register" color="#fff" className="link_cadastro">
+        <a href="https://orange-squad-23-front-end.vercel.app/register" color="#fff" className="link_cadastro">
           Cadastre-se
         </a>
       </form>
