@@ -12,7 +12,8 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import CollectionsRoundedIcon from "@mui/icons-material/CollectionsRounded";
 import Head from "next/head";
-import Modal from "../../components/modal";
+import Modal from "../../app/app";
+
 
 
 const Project = () => (
