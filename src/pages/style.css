@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding-right: 15%;
+  gap: 103px;
+  height: 832px;
+}
+
+.image {
+  width: 525px;
+  height: 100vh;
+}
+
+.container_titulo {
+  margin-top: 210px;
+  margin-bottom: 32px;
+}
+
+.titulo {
+  font-family: "Roboto";
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  color: #222244;
+  width: 540px;
+  margin-bottom: 32px;
+}
+
+.subtitulo {
+  font-family: "Roboto";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 100% */
+  color: #515255;
+}
+
+.inputs {
+  width: 517px;
+  margin-bottom: auto;
+}
+
+.enviar {
+  display: flex;
+  width: 517px;
+  height: 42px;
+  padding: 8px 22px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+  color: #fcfdff;
+  margin-top: 16px;
+}
+
+.link_cadastro {
+  text-decoration: none;
+  color: #818388;
+}
+
+.formulario {
+  gap: 2px;
+}
+
+.botao_google {
+  font-family: "Roboto";
+  display: inline-flex;
+  padding: 3px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  display: inline-flex;
+  justify-items: center;
+  flex-direction: column;
+  color: rgba(0, 0, 0, 0.54);
+  font-family: Roboto;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  padding: 11px;
+  align-items: flex-start;
+  border-radius: 0px;
+  background: #fff;
+  margin-left: 169px;
+  flex-direction: row;
+}
+
+.posicao_botao {
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media (min-width: 1200px) {
+}

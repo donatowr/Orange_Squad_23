@@ -1,0 +1,160 @@
+import React, { useState } from "react";
+import { TextField, createTheme, ThemeProvider } from "@mui/material";
+import "./style.css";
+import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@mui/material';
+import VisibilityOff from '@mui/material';
+import BotaoSenha from "../../components/Button/botaoPassword";
+import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
+
+
+
+
+
+
+const Theme = createTheme({
+  palette: {
+    primary: {
+      main: "#515255",
+    },
+    secundary: {
+      main: "#ff5522",
+    },
+    background: {
+      white: "#ffffff",
+    },
+  },
+  typography: {
+    fontfamily: "Roboto, sans-serif",
+    fontSize: 15,
+    fontWeight: 500,
+    lineHeight: 26 /* 173.333% */,
+    letterSpacing: 0.46,
+  },
+  shape: {
+    borderRadius: 5,
+  },
+  layout: {
+    width: 517,
+    height: 128,
+    gap: 16,
+    flexShrink: 0,
+  },
+});
+
+const Formulario = () => {
+  const [content, setContent] = useState({
+    name: "",
+    secondName: "",
+    email: "",
+    password: "",
+  });
+
+
+
+  const onChangeInput = (e) =>
+    setContent({ ...content, [e.target.name]: e.target.value });
+
+  const newUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3001/register", {
+        method: "POST",
+        body: JSON.stringify(content),
+        headers: { "Content-Type": "application/json" },
+        mode: "cors",
+        credentials: "omit",
+      });
+
+      if (response.ok) {
+        
+        toast.success('Cadastro feito com Sucesso');
+        window.location.href = "http://localhost:3000/";
+
+      }else {        
+        toast.error('Tente Novamente!');
+      }
+
+
+
+    } catch (error) {}
+  };
+
+  return (
+    <ThemeProvider theme={Theme}>
+      <div className="container_titulo">
+        <h1 className="titulo">Cadastre-se</h1>
+      </div>
+      <form className="formulario" onSubmit={newUser}>
+        <TextField
+          style={{ width: "250.5px", marginRight: "12px" }}
+          margin="normal"
+          name="name"
+          label="Nome"
+          required="required"
+          placeholder="Nome"
+          className="inputs"
+          onChange={onChangeInput}
+          value={content.name}
+        />
+
+        <TextField
+          style={{ width: "250.5px" }}
+          margin="normal"
+          label="Sobrenome"
+          required="required"
+          name="secondName"
+          placeholder="Sobrenome"
+          className="inputs"
+          onChange={onChangeInput}
+          value={content.secondName}
+        />
+
+        <TextField
+          fullWidth
+          margin="normal"
+          name="email"
+          required="required"
+          placeholder="Camila.ux@gmail.com"
+          label="Email Address"
+          type="email"
+          className="inputs"
+          onChange={onChangeInput}
+          value={content.email}
+        />
+        <TextField
+          fullWidth
+          margin="normal"
+          required="required"
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="********"
+          className="inputs"
+          onChange={onChangeInput}
+          value={content.password} 
+        />
+        <Button
+          className="enviar"
+          variant="contained"
+          color="secundary"
+          type="submit"
+        >
+          CADASTRAR
+        </Button>
+      </form>
+    </ThemeProvider>
+
+   
+
+  );
+};
+
+export default Formulario;
