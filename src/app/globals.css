@@ -41,7 +41,9 @@ textarea {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
+ height: 100vh;
+ width: 100vw;
+ 
   scroll-behavior: smooth;
   line-height: 1.6;
 }
@@ -71,7 +73,7 @@ img {
   height: auto;
 }
 
-@media (max-width: 100%) {
+@media (max-width: 100vh) {
   /* Add your responsive styles here */
 }
 

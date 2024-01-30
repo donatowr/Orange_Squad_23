@@ -7,8 +7,8 @@
 }
 
 body {
-  width: 1280px;
-  height: 832px;
+  width: 100vw;
+  height: 100vh;
 }
 
 .container {
@@ -22,7 +22,7 @@ body {
 
 .image {
   width: 525px;
-  height: 832px;
+  height: 100vh;
 }
 
 .container_titulo {

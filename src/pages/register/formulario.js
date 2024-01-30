@@ -1,11 +1,23 @@
 import React, { useState } from "react";
-import { TextField, createTheme, ThemeProvider, Icon } from "@mui/material";
-import GoogleIcon from "@mui/icons-material/Google";
+import { TextField, createTheme, ThemeProvider } from "@mui/material";
 import "./style.css";
-import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { toast } from "react-toastify";
+import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@mui/material';
+import VisibilityOff from '@mui/material';
+import BotaoSenha from "../../components/Button/botaoPassword";
+import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
+
+
+
+
+
 
 const Theme = createTheme({
   palette: {
@@ -38,7 +50,6 @@ const Theme = createTheme({
 });
 
 const Formulario = () => {
-
   const [content, setContent] = useState({
     name: "",
     secondName: "",
@@ -46,12 +57,15 @@ const Formulario = () => {
     password: "",
   });
 
-  const onChangeInput = e =>
+
+
+  const onChangeInput = (e) =>
     setContent({ ...content, [e.target.name]: e.target.value });
 
-  const newUser = async e => {
+  const newUser = async (e) => {
+    e.preventDefault();
     try {
-     const response = await fetch("http://localhost:3001/register", {
+      const response = await fetch("http://localhost:3001/register", {
         method: "POST",
         body: JSON.stringify(content),
         headers: { "Content-Type": "application/json" },
@@ -59,13 +73,18 @@ const Formulario = () => {
         credentials: "omit",
       });
 
-      if(response.ok){
-        window.location.href='http://localhost:3000/'
-      }
-      
-      }catch (error) {
+      if (response.ok) {
+        
+        toast.success('Cadastro feito com Sucesso');
+        window.location.href = "http://localhost:3000/";
 
-    }
+      }else {        
+        toast.error('Tente Novamente!');
+      }
+
+
+
+    } catch (error) {}
   };
 
   return (
@@ -120,7 +139,7 @@ const Formulario = () => {
           placeholder="********"
           className="inputs"
           onChange={onChangeInput}
-          value={content.password}
+          value={content.password} 
         />
         <Button
           className="enviar"
@@ -132,6 +151,9 @@ const Formulario = () => {
         </Button>
       </form>
     </ThemeProvider>
+
+   
+
   );
 };
 
