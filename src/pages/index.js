@@ -1,4 +1,7 @@
+'use client'
+
 import { useState } from "react";
+
 import Head from "next/head";
 import "./style.css";
 import imagemHome from "./images/img_login.png";
