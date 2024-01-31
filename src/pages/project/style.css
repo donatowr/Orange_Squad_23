@@ -155,7 +155,8 @@ a {
   justify-items: center;
   margin-left: 32px;
   border-radius: 4px;
-  background: #a3a3a5;
+  background: #ffffff;
+  margin-top: 32px;
 }
 
 .add {
@@ -211,7 +212,7 @@ left: 0;
   width: 60%;
   min-width:450px;
   min-height: 200px;
-  background-color: #ffffff96;
+  background-color: #ffffff;
   backdrop-filter: blur(10px);
 }
 
