@@ -58,7 +58,7 @@ const Formulario = () => {
         const responseData = await response.json();
         localStorage.setItem("token", JSON.stringify(responseData.token));
 
-        window.location.href = "https://orange-squad-23.vercel.app/";
+        window.location.href = "http://localhost:3000/";
       }
     } catch (error) {}
   };

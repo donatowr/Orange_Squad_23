@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "./style.css";
 import localImage from "../images/Logo_orange.png";
 import Image from "next/image";
@@ -6,7 +7,7 @@ import StarOutline from "@mui/icons-material/StarSharp";
 import Stack from "@mui/material/Stack";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import localImagePhoto from "../images/Image.png";
-import React from "react";
+import { useState } from "react";
 import { UseSession, signIn, signOut } from "next-auth/react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -16,23 +17,65 @@ import Modal from "../../app/app";
 
 
 
-const Project = () => (
+
+
+function Project() {
+
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+     setToken(localStorage.getItem('token'));
+        }
+  }, [])
+
+
+  
+
+  const [projetc, setProject] = useState([]);
+
+  
+  
+fetch("http://localhost:3001/user/projects", {
+      method: 'GET',
+      headers: {
+          'Autorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+        
+      })
+   
+
+    .then(response => {
+      console.log('cheguei no then')
+setProject(response)
+console.log(response)
+      return response.json();
+    })
+    console.log(projetc)
+    console.log(token, 'final')
+
+
+  
+return (
+
+  
   <>
     <Head>
-      <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Project</title>
     </Head>
 
     <header>
-      <nav>
+    <nav>
         <Image className="logo" src={localImage} />
         <div className="links">
-          <a href="">Meus projetos</a>
-          <a href="">Descobrir</a>
+        <a href="">Meus projetos</a>
+        <a href="">Descobrir</a>
         </div>
-      </nav>
-
+        </nav>
+        
       <Stack direction="row" spacing={2}>
         <div className="photo">
           <Image className="photo" src={localImagePhoto} />
@@ -42,9 +85,9 @@ const Project = () => (
           <>
             <IconButton className="notificacao" color="#FFFFFF" size="medium">
               <NotificationsActiveIcon />
-            </IconButton>
-          </>
-        </div>
+              </IconButton>
+              </>
+              </div>
 
         <div>
           <>
@@ -59,9 +102,9 @@ const Project = () => (
       <main className="content">
     
       
-          <section>
+      <section>
             <div className="content_upper">
-              <div className="content_image_user">
+            <div className="content_image_user">
                 <div>
                   <Image className="image_project" src={localImagePhoto} />
                 </div>
@@ -70,9 +113,9 @@ const Project = () => (
                   <p className="locatation">Brasil</p>
              <Modal />
                 </div>
-              </div>
-            </div>
-            <div className="content_under">
+                </div>
+                </div>
+                <div className="content_under">
               <h1 className="title_project">Meus Projetos</h1>
               <TextField
                 className="seach_project"
@@ -103,11 +146,15 @@ const Project = () => (
               </div>
             </div>
           </section>
-         
+          
+          
+          
+          
+          </main>
+          </>
+          )
+          
+        }
       
-
-
-      </main>
-  </>
-);
-export default Project;
+          export default Project;
+          
