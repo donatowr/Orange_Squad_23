@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+@media (max-width: 1200px) {
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -8,7 +11,7 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100vh
 }
 
 .container {
@@ -17,17 +20,24 @@ body {
   flex-direction: row;
   padding-right: 15%;
   gap: 103px;
-  height: 832px;
+  /*height: 832px;*/
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .image {
-  width: 525px;
-  height: 100vh;
+  /*width: 100%;
+  height: 100vh;*/
+  height: auto;
+  max-width: 525px;
 }
+
 
 .container_titulo {
   margin-top: 210px;
   margin-bottom: 32px;
+  max-width: 540px;
 }
 
 .titulo {
@@ -39,6 +49,7 @@ body {
   color: #222244;
   width: 540px;
   margin-bottom: 32px;
+  
 }
 
 .subtitulo {
@@ -51,8 +62,10 @@ body {
 }
 
 .inputs {
-  width: 517px;
-  margin-bottom: auto;
+ width: 517px;
+ margin-bottom: auto;
+ 
+ 
 }
 
 .enviar {
@@ -67,6 +80,8 @@ body {
   margin-bottom: 8px;
   color: #fcfdff;
   margin-top: 16px;
+  margin-left: auto;
+  margin-right:auto;
 }
 
 .link_cadastro {
@@ -95,20 +110,21 @@ body {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  display: flex;
+  /*display: flex;*/
   padding: 11px;
   align-items: flex-start;
   border-radius: 0px;
   background: #fff;
-  margin-left: 169px;
+  /*margin-left: 169px;*/
+  margin-left: 10%;
   flex-direction: row;
 }
 
 .posicao_botao {
+  /*display:flex;*/
   align-items: center;
   flex-direction: row;
   justify-content: center;
 }
 
-@media (min-width: 1200px) {
-}
+
