@@ -9,7 +9,8 @@ function MyApp({ Component, pageProps, session }) {
   return (
     <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
-      <ToastContainer position="top-center" autoClose="false" hideProgressBar="true" theme="colored" closeOnClick="true" pauseOnHover="true" transition="flip" progress="undefined" draggable="true"/>
+      <ToastContainer position="top-center" autoClose={5000} hideProgressBar="false" theme="colored" closeOnClick
+rtl={true} pauseOnHover="true" transition="Bounce" progress="undefined" newestOnTop={false} draggable="true"/>
     </SessionProvider>
   );
 }

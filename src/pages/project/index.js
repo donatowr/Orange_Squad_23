@@ -14,147 +14,134 @@ import TextField from "@mui/material/TextField";
 import CollectionsRoundedIcon from "@mui/icons-material/CollectionsRounded";
 import Head from "next/head";
 import Modal from "../../app/app";
-
-
+import { useRouter } from "next/navigation";
 
 
 
 function Project() {
-
-  const [token, setToken] = useState('');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-     setToken(localStorage.getItem('token'));
-        }
-  }, [])
-
+  var data = "";
+  const [project, setProject] = useState(null);
+  const [isloading, setIsloading] = useState(true);
+  const navigate = useRouter();
 
   
-
-  const [projetc, setProject] = useState([]);
-
-  
-  
-fetch("http://localhost:3001/user/projects", {
-      method: 'GET',
+  useEffect( async () => {
+    const token = localStorage.getItem("token");
+    data = await fetch("http://localhost:3001/userData", {
+      method: "GET",
       headers: {
-          'Autorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-        
-      })
-   
-
-    .then(response => {
-      console.log('cheguei no then')
-setProject(response)
-console.log(response)
+        Authorization: `Bearer ${token.replace(/\"/g, "")}`,
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        setProject(response);
+        console.log(response.name);
+      }
+      setIsloading(false);
       return response.json();
-    })
-    console.log(projetc)
-    console.log(token, 'final')
-
-
+    });
+    
+  }, []);
   
-return (
-
+  useEffect(() => {
+    if (project === null && !isloading) {
+      navigate.push("/");
+    }
+  }, [isloading]);
   
-  <>
-    <Head>
-    <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Project</title>
-    </Head>
+  if (isloading) {
+    return <p>Carregando</p>;
+  }
+  
 
-    <header>
-    <nav>
-        <Image className="logo" src={localImage} />
-        <div className="links">
-        <a href="">Meus projetos</a>
-        <a href="">Descobrir</a>
-        </div>
+  return (
+    <>
+      <Head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Project</title>
+      </Head>
+
+      <header>
+        <nav>
+          <Image className="logo" src={localImage} alt="logoOrange" />
+          <div className="links">
+            <a href="">Meus projetos</a>
+            <a href="">Descobrir</a>
+          </div>
         </nav>
-        
-      <Stack direction="row" spacing={2}>
-        <div className="photo">
-          <Image className="photo" src={localImagePhoto} />
-        </div>
 
-        <div>
-          <>
-            <IconButton className="notificacao" color="#FFFFFF" size="medium">
-              <NotificationsActiveIcon />
+        <Stack direction="row" spacing={2}>
+          <div className="photo">
+            <Image className="photo" src={localImagePhoto} alt="photoUser" />
+          </div>
+
+          <div>
+            <>
+              <IconButton className="notificacao" color="#FFFFFF" size="medium">
+                <NotificationsActiveIcon />
               </IconButton>
-              </>
-              </div>
+            </>
+          </div>
 
-        <div>
-          <>
-            <IconButton color="inherit" size="medium">
-              <StarOutline />
-            </IconButton>
-          </>
-        </div>
-      </Stack>
-    </header>
+          <div>
+            <>
+              <IconButton color="inherit" size="medium">
+                <StarOutline />
+              </IconButton>
+            </>
+          </div>
+        </Stack>
+      </header>
 
       <main className="content">
-    
-      
-      <section>
-            <div className="content_upper">
+        <section>
+          <div className="content_upper">
             <div className="content_image_user">
-                <div>
-                  <Image className="image_project" src={localImagePhoto} />
-                </div>
-                <div className="userInfo_addProject">
-                  <h1 className="userName">Camila Soares</h1>
-                  <p className="locatation">Brasil</p>
-             <Modal />
-                </div>
-                </div>
-                </div>
-                <div className="content_under">
-              <h1 className="title_project">Meus Projetos</h1>
-              <TextField
-                className="seach_project"
-                label="Buscar tags"
-                variant="outlined"
-                size="medium"
-              />
-
-              <div className="add_project_server">
-                <div className="add">
-                  <IconButton
-                    className="btn_collection"
-                    color="#000"
-                    fontSize="large"
-                    href=""
-                   
-                  >
-                    <CollectionsRoundedIcon />
-                  </IconButton>
-
-                  <p className="title_collection">
-                    Adicione seu primeiro projeto
-                  </p>
-                  <p className="sub_title_collection">
-                    Compartilhe seu talento com milhares de pessoas
-                  </p>
-                </div>
+              <div>
+                <Image className="image_project" src={localImagePhoto} />
+              </div>
+              <div className="userInfo_addProject">
+                <h1 className="userName">{data.name}</h1>
+                <p className="locatation">Brasil</p>
+                <Modal />
               </div>
             </div>
-          </section>
-          
-          
-          
-          
-          </main>
-          </>
-          )
-          
-        }
-      
-          export default Project;
-          
+          </div>
+          <div className="content_under">
+            <h1 className="title_project">Meus Projetos</h1>
+            <TextField
+              className="seach_project"
+              label="Buscar tags"
+              variant="outlined"
+              size="medium"
+            />
+
+            <div className="add_project_server">
+              <div className="add">
+                <IconButton
+                  className="btn_collection"
+                  color="#000"
+                  fontSize="large"
+                  href=""
+                >
+                  <CollectionsRoundedIcon />
+                </IconButton>
+
+                <p className="title_collection">
+                  Adicione seu primeiro projeto
+                </p>
+                <p className="sub_title_collection">
+                  Compartilhe seu talento com milhares de pessoas
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+}
+
+export default Project;

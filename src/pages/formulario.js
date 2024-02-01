@@ -4,6 +4,9 @@ import "./style.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 
 const Theme = createTheme({
@@ -42,6 +45,9 @@ const Formulario = () => {
     password: "",
   });
 
+  const navigate = useRouter();
+ 
+
   const onChangeInput = (e) =>
     setContent({ ...content, [e.target.name]: e.target.value });
 
@@ -58,10 +64,13 @@ const Formulario = () => {
         const responseData = await response.json();
         localStorage.setItem("token", JSON.stringify(responseData.token));
 
-        window.location.href = "http://localhost:3000/";
+       navigate.push('/project')
+    
       }
-    } catch (error) {}
-  };
+    } catch (error) {
+
+    }
+  }
 
   return (
     <ThemeProvider theme={Theme}>
@@ -112,9 +121,8 @@ const Formulario = () => {
         >
           Enviar
         </Button>
-        <a href="https://orange-squad-23-front-end.vercel.app/register" color="#fff" className="link_cadastro">
-          Cadastre-se
-        </a>
+        <Link style={{"textDecoration": "none"}} href={'/register'}> Cadastre - se       
+        </Link>
       </form>
     </ThemeProvider>
   );

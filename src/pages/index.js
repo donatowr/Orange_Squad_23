@@ -9,10 +9,11 @@ import Image from "next/image";
 import Formulario from "./formulario";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Button, Stack } from "@mui/material";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const Login = () => {
   const { data: session } = useSession("requerid: true");
+  const navigate = useRouter();
 
   if (!session) {
     return (
@@ -24,7 +25,7 @@ const Login = () => {
         </Head>
 
         <main className="container">
-          <Image className="image" src={imagemHome} />
+          <Image className="image" src={imagemHome} alt="home"/>
 
           <section className="inputs">
             <Formulario />
@@ -34,11 +35,7 @@ const Login = () => {
     );
   } else {
     return (
-
-      <div>
-      <p>Welcome, {session.user.email}</p>
-      <button onClick={() => signOut()}>Sign Out</button> 
-    </div>
+ navigate.push('/project')
       )
   }
 };
