@@ -3,6 +3,7 @@ import { TextField, createTheme, ThemeProvider } from "@mui/material";
 import "./style.css";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 
 const Theme = createTheme({
@@ -43,7 +44,7 @@ const Formulario = () => {
     password: "",
   });
 
-
+  const navigate = useRouter()
 
   const onChangeInput = (e) =>
     setContent({ ...content, [e.target.name]: e.target.value });
@@ -62,7 +63,7 @@ const Formulario = () => {
       if (response.ok) {
         
         toast.success('Cadastro feito com Sucesso');
-        window.location.href = "https://orange-squad-23.vercel.app/";
+        navigate.push('/')
 
       }else {        
         toast.error('Tente Novamente!');
