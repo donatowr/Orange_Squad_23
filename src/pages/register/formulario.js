@@ -123,7 +123,7 @@ const Formulario = () => {
           name="password"
           type="password"
           label="Password"
-          placeholder="********"
+          placeholder="******** (minímo 8 digitos)"
           className="inputs"
           onChange={onChangeInput}
           value={content.password} 

@@ -15,45 +15,71 @@ import CollectionsRoundedIcon from "@mui/icons-material/CollectionsRounded";
 import Head from "next/head";
 import Modal from "../../app/app";
 import { useRouter } from "next/navigation";
-
-
+import Script from "next/script";
 
 function Project() {
-  var data = "";
   const [project, setProject] = useState(null);
   const [isloading, setIsloading] = useState(true);
   const navigate = useRouter();
+  const [data, setData] = useState(null);
+  const [create, setCreate] = useState(null);
 
-  
-  useEffect( async () => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
-    data = await fetch("http://localhost:3001/userData", {
+    fetch("http://localhost:3001/userData", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token.replace(/\"/g, "")}`,
         "Content-Type": "application/json",
       },
-    }).then((response) => {
-      if (response.ok) {
-        setProject(response);
-        console.log(response.name);
-      }
-      setIsloading(false);
-      return response.json();
-    });
-    
+    })
+      .then((response) => {
+        if (response.ok) {
+          setProject(response);
+          return response.json();
+        }
+      })
+      .then((data) => {
+        setData(data);
+        setIsloading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    fetch("http://localhost:3001/user/projects", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token.replace(/\"/g, "")}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setProject(response);
+          return response.json();
+        }
+      })
+      .then((create) => {
+        setCreate(create);
+        setIsloading(false);
+      });
   }, []);
   
+
   useEffect(() => {
     if (project === null && !isloading) {
       navigate.push("/");
     }
   }, [isloading]);
-  
+
   if (isloading) {
     return <p>Carregando</p>;
   }
-  
+
+const imgProject = create; 
+console.log(imgProject[0].title);
+
 
   return (
     <>
@@ -103,8 +129,10 @@ function Project() {
                 <Image className="image_project" src={localImagePhoto} />
               </div>
               <div className="userInfo_addProject">
-                <h1 className="userName">{data.name}</h1>
-                <p className="locatation">Brasil</p>
+                <h1 className="userName" id="name">
+                  {data.name}
+                </h1>
+                <p className="location">Brasil</p>
                 <Modal />
               </div>
             </div>
@@ -118,7 +146,7 @@ function Project() {
               size="medium"
             />
 
-            <div className="add_project_server">
+            <div className="add_project_server" id="addServer">
               <div className="add">
                 <IconButton
                   className="btn_collection"
@@ -137,6 +165,7 @@ function Project() {
                 </p>
               </div>
             </div>
+            <p>tags</p>
           </div>
         </section>
       </main>

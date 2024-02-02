@@ -1,4 +1,3 @@
-import { Balance } from "@mui/icons-material";
 import { SessionProvider } from "next-auth/react";
 import React from "react";
 import { ToastContainer } from "react-toastify";
@@ -9,8 +8,17 @@ function MyApp({ Component, pageProps, session }) {
   return (
     <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
-      <ToastContainer position="top-center" autoClose={5000} hideProgressBar="false" theme="colored" closeOnClick
-rtl={true} pauseOnHover="true" transition="Bounce" progress="undefined" newestOnTop={false} draggable="true"/>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar="false"
+        theme="colored"
+        pauseOnHover="false"
+        transition="Bounce"
+        progress=""
+        newestOnTop={true}
+        draggable="false"
+      />
     </SessionProvider>
   );
 }
