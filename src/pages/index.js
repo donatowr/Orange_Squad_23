@@ -34,8 +34,10 @@ const Login = () => {
       </div>
     );
   } else {
+    navigate.push('/project')
     return (
- navigate.push('/project')
+      <button onClick={signOut}>Sair</button>
+      
       )
   }
 };

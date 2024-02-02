@@ -121,7 +121,7 @@ const Formulario = () => {
         >
           Enviar
         </Button>
-        <Link style={{"textDecoration": "none"}} href={'/register'}> Cadastre - se       
+        <Link style={{"textDecoration": "none", "color":"#818388"}}  href={'/register'}> Cadastre - se       
         </Link>
       </form>
     </ThemeProvider>
