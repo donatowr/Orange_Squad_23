@@ -8,8 +8,7 @@ import imagemHome from "./images/img_login.png";
 import Image from "next/image";
 import Formulario from "./formulario";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Button, Stack } from "@mui/material";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const { data: session } = useSession("requerid: true");

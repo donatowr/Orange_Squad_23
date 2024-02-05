@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { TextField, createTheme, ThemeProvider } from "@mui/material";
+import {
+  TextField,
+  createTheme,
+  ThemeProvider,
+  IconButton,
+} from "@mui/material";
 import "./style.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import GoogleIcon from "../components/Button/index";
 
 
 const Theme = createTheme({
@@ -43,10 +48,9 @@ const Formulario = () => {
   const [content, setContent] = useState({
     email: "",
     password: "",
-  });
+  });  
 
   const navigate = useRouter();
- 
 
   const onChangeInput = (e) =>
     setContent({ ...content, [e.target.name]: e.target.value });
@@ -54,7 +58,7 @@ const Formulario = () => {
   const sendUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch("http://54.91.19.56:3000/login", {
         method: "POST",
         body: JSON.stringify(content),
         headers: { "Content-Type": "application/json" },
@@ -64,13 +68,12 @@ const Formulario = () => {
         const responseData = await response.json();
         localStorage.setItem("token", JSON.stringify(responseData.token));
 
-       navigate.push('/project')
-    
+        navigate.push("/project");
       }
-    } catch (error) {
+    } catch (error) {}
+  };
 
-    }
-  }
+ 
 
   return (
     <ThemeProvider theme={Theme}>
@@ -78,13 +81,15 @@ const Formulario = () => {
         <h1 className="titulo">Entre no Orange Portfólio</h1>
 
         <Stack className="posicao_botao" spacing={2} direction="colunm">
-          <Button
-            onClick={() => signIn("google")}
+          <IconButton
+            aria-label="delete"
             className="botao_google"
             variant="outlined"
+            onClick={() => signIn("google")}
           >
+            <GoogleIcon />
             Entrar com Google
-          </Button>
+          </IconButton>
         </Stack>
       </div>
 
@@ -121,7 +126,12 @@ const Formulario = () => {
         >
           Enviar
         </Button>
-        <Link style={{"textDecoration": "none", "color":"#818388"}}  href={'/register'}> Cadastre - se       
+        <Link
+          style={{ textDecoration: "none", color: "#818388" }}
+          href={"/register"}
+        >
+          {" "}
+          Cadastre - se
         </Link>
       </form>
     </ThemeProvider>
