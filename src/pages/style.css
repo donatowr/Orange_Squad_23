@@ -63,9 +63,7 @@ body {
 
 .inputs {
  width: 517px;
- margin-bottom: auto;
- 
- 
+ margin-bottom: auto; 
 }
 
 .enviar {
@@ -96,26 +94,23 @@ body {
 
 .botao_google {
   font-family: "Roboto";
-  display: inline-flex;
+  display: flex;
   padding: 3px;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   gap: 8px;
   display: inline-flex;
   justify-items: center;
-  flex-direction: column;
   color: rgba(0, 0, 0, 0.54);
   font-family: Roboto;
-  font-size: 10px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  /*display: flex;*/
   padding: 11px;
   align-items: flex-start;
   border-radius: 0px;
   background: #fff;
-  /*margin-left: 169px;*/
   margin-left: 10%;
   flex-direction: row;
 }
