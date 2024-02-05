@@ -2,7 +2,6 @@ import * as React from "react";
 import "./style.css";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import {
   IconButton,
@@ -13,7 +12,6 @@ import {
 import CollectionsRoundedIcon from "@mui/icons-material/CollectionsRounded";
 import { Stack } from "@mui/system";
 import { useState, useEffect } from "react";
-import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
 
 const Theme = createTheme({

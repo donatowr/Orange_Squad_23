@@ -9,9 +9,7 @@ import Stack from "@mui/material/Stack";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import localImagePhoto from "../images/Image.png";
 import { useState } from "react";
-import { UseSession, signIn, signOut } from "next-auth/react";
 import TextField from "@mui/material/TextField";
-
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import ModalAdd from "./modalButtonAdd";
@@ -20,12 +18,12 @@ import ModalPhoto from "./modalButtonPhoto";
 
 function Project() {
 
-  const [ismodalVisible, setIsModalVisible] = useState(false);
+  
   const [project, setProject] = useState(null);
   const [isloading, setIsloading] = useState(true);
   const navigate = useRouter();
   const [data, setData] = useState(null);
-  const [create, setCreate] = useState(null);
+ 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
