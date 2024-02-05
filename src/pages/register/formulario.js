@@ -52,7 +52,7 @@ const Formulario = () => {
   const newUser = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://54.91.19.56:3000/register", {
+      const response = await fetch("https://54.91.19.56:3000/register", {
         method: "POST",
         body: JSON.stringify(content),
         headers: { "Content-Type": "application/json" },
