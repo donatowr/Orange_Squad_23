@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import CollectionsRoundedIcon from "@mui/icons-material/CollectionsRounded";
 import { Stack } from "@mui/system";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 const Theme = createTheme({
@@ -79,7 +79,7 @@ export default function ModalAdd() {
       data.set("link", link);
       data.set("file", image);
 
-      const response = await fetch("http://54.91.19.56:3000/project", {
+      const response = await fetch("https://54.91.19.56:3000/project", {
         method: "POST",
         body: data,
         headers: {
