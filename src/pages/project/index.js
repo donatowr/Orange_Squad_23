@@ -23,7 +23,7 @@ function Project() {
   const [isloading, setIsloading] = useState(true);
   const navigate = useRouter();
   const [data, setData] = useState(null);
- 
+  const [create, setCreate] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -149,7 +149,7 @@ function Project() {
           <div className="content_upper">
             <div className="content_image_user">
               <div>
-                <Image fill={true} className="image_project" src={data && data.userImage} />
+                <Image className="image_project"  src={data.userImage} width={40} height={40} />
               </div>
               <div className="userInfo_addProject">
                 <h1 className="userName" id="name">
