@@ -79,7 +79,7 @@ export default function ModalAdd() {
       data.set("link", link);
       data.set("file", image);
 
-      const response = await fetch("https://nice-pink-ox-fez.cyclic.app/project", {
+      const response = await fetch("https://54.91.19.56:3000/project", {
         method: "POST",
         body: data,
         headers: {

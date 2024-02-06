@@ -27,7 +27,7 @@ function Project() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://54.91.19.56:3000/userData", {
+    fetch("https://54.91.19.56:3000/userData", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token.replace(/\"/g, "")}`,
@@ -48,7 +48,7 @@ function Project() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("https://nice-pink-ox-fez.cyclic.app/user/projects", {
+    fetch("https://54.91.19.56:3000/user/projects", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token.replace(/\"/g, "")}`,
